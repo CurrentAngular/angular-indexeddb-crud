@@ -1,1 +1,23 @@
-<p>header works!</p>
+<mat-toolbar class="header">
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="header-item"
+    >home</a
+  >
+  <a
+    routerLink="/add"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="header-item"
+    >add</a
+  >
+  <a
+    routerLink="/delete"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="header-item"
+    >delete</a
+  >
+</mat-toolbar>

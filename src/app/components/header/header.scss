@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  background-color: #3f51b5;
+  gap: 10px;
+
+  &-item {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  & .active {
+    color: cyan;
+  }
+}
