@@ -1,0 +1,21 @@
+.title {
+  padding: 40px 20px 0;
+  margin: 0;
+}
+
+.list {
+  padding: 20px;
+}
+
+.item {
+  border-bottom: 1px solid lightgray;
+
+  &-title {
+    font-weight: bold;
+    color: #3f51b5;
+  }
+
+  &-line {
+    color: gray;
+  }
+}

@@ -1,1 +1,10 @@
-<p>home works!</p>
+<h2 class="title">Contacts</h2>
+
+<mat-list role="list" class="list">
+	@for (contact of contacts(); track contact.name) {
+	<mat-list-item role="listitem" class="item">
+		<span matListItemTitle class="item-title">{{ contact.name }}</span>
+		<span matListItemLine class="item-line">{{ contact.email }}</span>
+	</mat-list-item>
+	}
+</mat-list>

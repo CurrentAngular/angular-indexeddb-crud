@@ -1,1 +1,9 @@
-<p>delete-contact works!</p>
+<h2 class="title">Delete contact</h2>
+<form class="form" [formGroup]="form" (ngSubmit)="deleteContact()">
+	<!-- name -->
+	<mat-form-field appearance="outline">
+		<mat-label>Name</mat-label>
+		<input formControlName="name" matInput placeholder="Name" />
+	</mat-form-field>
+	<button type="submit" matButton="outlined" [disabled]="form.invalid">Delete contact</button>
+</form>

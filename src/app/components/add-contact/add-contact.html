@@ -1,1 +1,15 @@
-<p>add-contact works!</p>
+<h2 class="title">Add contact</h2>
+<form class="form" [formGroup]="form" (ngSubmit)="addContact()">
+	<!-- name -->
+	<mat-form-field appearance="outline">
+		<mat-label>Name</mat-label>
+		<input formControlName="name" matInput placeholder="Name" />
+	</mat-form-field>
+
+	<!-- email -->
+	<mat-form-field appearance="outline">
+		<mat-label>Email</mat-label>
+		<input formControlName="email" matInput placeholder="Email" />
+	</mat-form-field>
+	<button type="submit" matButton="outlined" [disabled]="form.invalid">Add contact</button>
+</form>

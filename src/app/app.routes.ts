@@ -11,6 +11,11 @@ export const routes: Routes = [
       import('./components/delete-contact/delete-contact').then((m) => m.DeleteContact),
   },
   {
+    path: 'update',
+    loadComponent: () =>
+      import('./components/update-contact/update-contact').then((m) => m.UpdateContact),
+  },
+  {
     path: '',
     loadComponent: () => import('./components/home/home').then((m) => m.Home),
   },
