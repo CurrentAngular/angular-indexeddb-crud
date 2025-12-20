@@ -1,9 +1,14 @@
 <h2 class="title">Delete contact</h2>
-<form class="form" [formGroup]="form" (ngSubmit)="deleteContact()">
-	<!-- name -->
-	<mat-form-field appearance="outline">
-		<mat-label>Name</mat-label>
-		<input formControlName="name" matInput placeholder="Name" />
-	</mat-form-field>
-	<button type="submit" matButton="outlined" [disabled]="form.invalid">Delete contact</button>
+<form class="form" (submit)="deleteContact($event)">
+  <!-- name -->
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input [field]="form.name" matInput placeholder="Name" />
+    @for (error of form.name().errors(); track error.kind) {
+    <mat-error>{{ error.message }}</mat-error>
+    }
+  </mat-form-field>
+  <button type="submit" matButton="outlined" [disabled]="form().invalid() || form().submitting()">
+    Delete contact
+  </button>
 </form>

@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Contact } from '../interfaces/contact';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
+  readonly #snackBar = inject(MatSnackBar);
+
   /** Add contact */
   addContact(db: IDBDatabase, contact: Contact, cb: (contact: Contact) => void): void {
     const request = db.transaction(['contacts'], 'readwrite').objectStore('contacts').add(contact);
@@ -58,17 +61,27 @@ export class ContactService {
 
         // Удаление контакта закончилось с ошибкой
         deleteRequest.onerror = () => {
-          console.error('IndexedDB error', deleteRequest.error);
+          this.#snackBar.open(
+            `Удаление контакта закончилось с ошибкой ${deleteRequest.error}!`,
+            'Close',
+            {
+              duration: 3000,
+            },
+          );
         };
       } else {
         // Контакт не найден
-        console.error('Contact not found');
+        this.#snackBar.open(`User with name ${name} not found!`, 'Close', { duration: 3000 });
       }
     };
 
     // Получение контактов закончилось с ошибкой
     getAllRequest.onerror = () => {
-      console.error('IndexedDB error', getAllRequest.error);
+      this.#snackBar.open(
+        `Получение контактов закончилось с ошибкой ${getAllRequest.error}!`,
+        'Close',
+        { duration: 3000 },
+      );
     };
   }
 }
