@@ -4,7 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ApiService } from '../../services/api-service';
 import { ContactService } from '../../services/contact-service';
-import { Contact } from '../../interfaces/contact';
 import {
   apply,
   email,
@@ -15,6 +14,7 @@ import {
   schema,
   submit,
 } from '@angular/forms/signals';
+import { ContactModel } from '../../models/contact-model';
 
 export interface AddContactInterface {
   readonly name: string;
@@ -56,12 +56,17 @@ export class AddContact {
     submit(this.form, async (form) => {
       try {
         const { name, email } = this.form().value();
-        const contact: Contact = { name, email };
+        const contact = new ContactModel(name, email);
 
-        await this.#api.openDB((db) => {
+        this.#api.openDB((db) => {
           this.#contacts.addContact(db, contact, (contact) => {
             console.log('New contact :: ', contact);
+
+            // Clear interaction state (touched, dirty)
             form().reset();
+
+            // Clear values
+            this.#formModel.set({ name: '', email: '' });
           });
 
           return db;

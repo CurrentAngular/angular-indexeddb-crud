@@ -5,7 +5,7 @@
 	<mat-form-field appearance="outline">
 		<mat-label>Name</mat-label>
 		<input [field]="form.name" matInput placeholder="Name" />
-		@for(error of form.name().errors(); track error) {
+		@for(error of form.name().errors(); track error.kind) {
 		<mat-error>{{ error.message }}</mat-error>
 		}
 	</mat-form-field>
@@ -14,7 +14,7 @@
 	<mat-form-field appearance="outline">
 		<mat-label>Email</mat-label>
 		<input [field]="form.email" matInput placeholder="Email" />
-		@for(error of form.email().errors(); track error) {
+		@for(error of form.email().errors(); track error.kind) {
 		<mat-error>{{ error.message }}</mat-error>
 		}
 	</mat-form-field>
