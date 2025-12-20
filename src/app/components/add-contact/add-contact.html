@@ -1,15 +1,23 @@
 <h2 class="title">Add contact</h2>
-<form class="form" [formGroup]="form" (ngSubmit)="addContact()">
+<form class="form" (submit)="onAddContact($event)">
+
 	<!-- name -->
 	<mat-form-field appearance="outline">
 		<mat-label>Name</mat-label>
-		<input formControlName="name" matInput placeholder="Name" />
+		<input [field]="form.name" matInput placeholder="Name" />
+		@for(error of form.name().errors(); track error) {
+		<mat-error>{{ error.message }}</mat-error>
+		}
 	</mat-form-field>
 
 	<!-- email -->
 	<mat-form-field appearance="outline">
 		<mat-label>Email</mat-label>
-		<input formControlName="email" matInput placeholder="Email" />
+		<input [field]="form.email" matInput placeholder="Email" />
+		@for(error of form.email().errors(); track error) {
+		<mat-error>{{ error.message }}</mat-error>
+		}
 	</mat-form-field>
-	<button type="submit" matButton="outlined" [disabled]="form.invalid">Add contact</button>
+
+	<button type="submit" matButton="outlined" [disabled]="form().invalid() || form().submitting()">Add contact</button>
 </form>
